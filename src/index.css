@@ -1,0 +1,55 @@
+/* google font link */
+@import url("https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* tailwind link */
+@import "tailwindcss";
+
+@theme {
+    /* ================== COLORS  ================== */
+    /* custom font */
+    --font-exo: "Exo", sans-serif;
+
+    /* custom font colors */
+    --color-custom-text-light: #ffffff;
+    --color-custom-text-dark: #000000;
+    --color-custom-text-heading: #f1f2f3;
+    --color-custom-text-gray-light: #babec4;
+    --color-custom-text-gray-dark: #888b91;
+
+    /* custom blob colors */
+    --color-custom-blob: #374a6d;
+
+    /* custom bg colors */
+    --color-custom-bg-primary-color: #0a0a0b;
+
+    /* custom btn bg colors */
+    --color-custom-btn-bg: #4177dc;
+
+    /* custom border colors */
+    --color-custom-hero-btn-first-border: #099260;
+    --color-custom-hero-btn-second-border: #02db8a;
+
+    /* custom bg gradient colors */
+    --color-custom-bg-gradient-color: #0a0a0b;
+}
+
+@layer base {
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        /* border: 1px solid greenyellow; */
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: var(--font-exo);
+        background: var(--color-custom-bg-gradient-color);
+        color: var(--color-custom-text-light);
+    }
+}
