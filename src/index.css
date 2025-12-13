@@ -21,6 +21,7 @@
 
     /* custom bg colors */
     --color-custom-bg-primary-color: #0a0a0b;
+    --color-custom-bg-dark-color: #111213;
 
     /* custom btn bg colors */
     --color-custom-btn-bg: #4177dc;
@@ -28,9 +29,6 @@
     /* custom border colors */
     --color-custom-hero-btn-first-border: #099260;
     --color-custom-hero-btn-second-border: #02db8a;
-
-    /* custom bg gradient colors */
-    --color-custom-bg-gradient-color: #0a0a0b;
 }
 
 @layer base {
@@ -49,7 +47,7 @@
 
     body {
         font-family: var(--font-exo);
-        background: var(--color-custom-bg-gradient-color);
+        background: var(--color-custom-bg-primary-color);
         color: var(--color-custom-text-light);
     }
 }

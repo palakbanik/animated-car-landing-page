@@ -37,7 +37,7 @@ export default function Navbar() {
     };
 
     return (
-        <header className="w-full h-full fixed top-0 left-0 overflow-hidden z-999">
+        <header className="w-full h-fit sticky top-0 left-0 overflow-visible z-40">
             <div className="relative max-w-[1280px] mx-auto px-6 sm:px-[80px] lg:px-[128px] py-4.5">
                 <nav className="flex items-center justify-between">
                     {/* logo */}
@@ -83,9 +83,11 @@ export default function Navbar() {
                 </nav>
                 {/* mobile menu */}
                 <nav
-                    className={`w-full h-[640px] flex flex-col items-center justify-center text-custom-text-light bg-custom-text-light/10 backdrop-blur-[10px] opacity-0 absolute ${
+                    className={`w-full h-[640px] flex flex-col items-center justify-center text-custom-text-light bg-custom-text-light/10 backdrop-blur-[96px] opacity-0 absolute ${
                         menuOpen ? "top-0 opacity-100" : "-top-200"
-                    } left-0 transition-all duration-700 z-9999`}
+                    } left-0 transition-all duration-700 z-50 ${
+                        menuOpen ? "pointer-events-auto" : "pointer-events-none"
+                    }`}
                 >
                     <ul className="flex flex-col text-center gap-8">
                         {menuLists.map(({ title, link }, idx) => (
