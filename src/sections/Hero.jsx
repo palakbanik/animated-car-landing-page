@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "motion/react";
 
 import blueThunderIcon from "../assets/icons/thunder-blue-icon.svg";
 import whiteThunderIcon from "../assets/icons/thunder-white-icon.svg";
@@ -16,36 +17,104 @@ export default function Hero() {
     return (
         <section
             id="home"
-            className="w-full h-full max-w-[1280px] mx-auto px-6 sm:px-[80px] lg:px-[128px] pt-[133px] pb-8 relative"
+            className="w-full h-full max-w-7xl mx-auto px-6 sm:px-20 lg:px-32 pt-[133px] pb-8 relative"
         >
             {/* blobs */}
-            <div className="w-[400px] h-[400px] bg-custom-blob/50 rounded-full blur-[100px] absolute -top-[59px] -left-[141px] animate-pulse -z-50 pointer-events-none"></div>
-            <div className="w-[300px] h-[300px] bg-custom-blob/50 rounded-full blur-[100px] absolute top-[317px] left-[200px] animate-pulse -z-50 pointer-events-none"></div>
+            <div className="w-[400px] md:w-[500px] h-[400px] md:h-[500px] bg-custom-blob/50 rounded-full blur-[100px] absolute -top-[59px] -left-[141px] lg:-left-[131px] animate-pulse -z-50 pointer-events-none"></div>
+            <div className="w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-custom-blob/50 rounded-full blur-[100px] absolute top-[317px] left-[200px] sm:left-[550px] md:left-[800px] lg:left-[1031px] animate-pulse -z-50 pointer-events-none"></div>
             <div className="flex flex-col items-center text-center">
                 <div className="flex flex-col gap-4 mb-1">
-                    <h1 className="font-semibold text-2xl leading-[140%] tracking-normal ">
+                    <motion.h1
+                        initial={{
+                            y: 100,
+                            opacity: 0,
+                        }}
+                        whileInView={{
+                            y: 0,
+                            opacity: 1,
+                        }}
+                        transition={{
+                            duration: 1,
+                            ease: "easeOut",
+                        }}
+                        className="font-semibold text-2xl sm:text-4xl leading-[140%] tracking-normal "
+                    >
                         Choose The Best Car
-                    </h1>
-                    <h3 className="font-semibold text-base leading-[140%]">
+                    </motion.h1>
+                    <motion.h3
+                        initial={{
+                            y: 100,
+                            opacity: 0,
+                        }}
+                        whileInView={{
+                            y: 0,
+                            opacity: 1,
+                        }}
+                        transition={{
+                            duration: 1.1,
+                            ease: "easeOut",
+                        }}
+                        className="font-semibold text-base sm:text-2xl leading-[140%]"
+                    >
                         Porsche Mission E
-                    </h3>
+                    </motion.h3>
                 </div>
-                <p className="flex items-center gap-1 mb-12">
+                <motion.p
+                    initial={{
+                        y: 100,
+                        opacity: 0,
+                    }}
+                    whileInView={{
+                        y: 0,
+                        opacity: 1,
+                    }}
+                    transition={{
+                        duration: 1.3,
+                        ease: "easeOut",
+                    }}
+                    className="flex items-center gap-1 mb-12"
+                >
                     <img
                         src={blueThunderIcon}
                         alt="thunder icon"
                         draggable="false"
                     />
-                    <span className="font-normal text-[13px] leading-[140%] text-custom-text-gray-light">
+                    <span className="font-normal text-[13px] sm:text-base leading-[140%] text-custom-text-gray-light">
                         Electric car
                     </span>
-                </p>
+                </motion.p>
 
-                <img src={car} alt="car" className="px-4" />
+                <motion.img
+                    initial={{
+                        scale: 0,
+                        // opacity: 0,
+                    }}
+                    whileInView={{ scale: 1 }}
+                    transition={{
+                        duration: 1.4,
+                    }}
+                    src={car}
+                    alt="car"
+                    className="px-4"
+                />
 
-                <div className="w-full flex items-center justify-between mt-10 mb-13">
+                <div className="w-full max-w-[406px] flex items-center justify-between mt-10 mb-13 sm:mb-14">
                     {items.map(({ image, title, para }, i) => (
-                        <div key={i} className="flex flex-col items-center">
+                        <motion.div
+                            initial={{
+                                y: 100,
+                                opacity: 0,
+                            }}
+                            whileInView={{
+                                y: 0,
+                                opacity: 1,
+                            }}
+                            transition={{
+                                duration: 1.5,
+                            }}
+                            key={i}
+                            className="flex flex-col items-center"
+                        >
                             <div className="bg-custom-bg-dark-color p-2 rounded-full">
                                 <img
                                     src={image}
@@ -59,15 +128,27 @@ export default function Hero() {
                             <p className="font-normal text-[10px] leading-none tracking-normal text-custom-text-gray-dark">
                                 {para}
                             </p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
-                <button className="border-2 border-custom-hero-btn-second-border p-2.5 rounded-full shadow-[0_0_16px_0_#02db8a] hover:opacity-80 transition-opacity cursor-pointer">
+                <motion.button
+                    initial={{
+                        scale: 0,
+                    }}
+                    animate={{
+                        scale: 1,
+                        transition: { duration: 1.6, delay: 1 },
+                    }}
+                    viewport={{ once: false, amount: 0.1 }}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.8 }}
+                    className="border-2 border-custom-hero-btn-second-border p-2.5 rounded-full shadow-[0_0_16px_0_#02db8a] hover:opacity-80 transition-opacity cursor-pointer"
+                >
                     <span className="flex items-center justify-center w-[70px] h-[70px] border-2 border-custom-hero-btn-first-border rounded-full font-medium text-[13px] leading-[140%] tracking-normal">
                         START
                     </span>
-                </button>
+                </motion.button>
             </div>
         </section>
     );

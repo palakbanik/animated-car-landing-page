@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoCloseSharp } from "react-icons/io5";
 
@@ -30,6 +30,20 @@ const menuLists = [
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeLink, setActiveLink] = useState("#home");
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     const handleLinkClick = (link) => {
         setActiveLink(link);
@@ -37,8 +51,14 @@ export default function Navbar() {
     };
 
     return (
-        <header className="w-full h-fit sticky top-0 left-0 overflow-visible z-40">
-            <div className="relative max-w-[1280px] mx-auto px-6 sm:px-[80px] lg:px-[128px] py-4.5">
+        <header
+            className={`w-full h-fit fixed top-0 left-0 overflow-visible z-40  ${
+                isScrolled
+                    ? "bg-custom-bg-primary-color backdrop-blur-sm shadow-lg"
+                    : ""
+            } transition-all duration-300`}
+        >
+            <div className="w-full h-full relative max-w-7xl mx-auto px-6 sm:px-20 lg:px-32 py-4.5">
                 <nav className="flex items-center justify-between">
                     {/* logo */}
                     <a
@@ -51,7 +71,7 @@ export default function Navbar() {
                             draggable="false"
                             className="w-4 h-4"
                         />
-                        <h3 className="font-medium text-[15px] md:text-base leading-[140%] tracking-normal">
+                        <h3 className="font-medium text-[15px] sm:text-base leading-[140%] tracking-normal">
                             Elecar
                         </h3>
                     </a>
