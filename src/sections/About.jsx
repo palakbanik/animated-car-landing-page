@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 
 import aboutImage from "../assets/images/about-image.png";
 import BlueButton from "../components/BlueButton";
+import HeadingText from "../components/HeadingText";
 
 export default function About() {
     return (
@@ -50,9 +51,7 @@ export default function About() {
                     viewport={{ once: false, amount: 0.3 }}
                     className="w-full max-w-[400px] flex flex-col items-start gap-4"
                 >
-                    <h2 className="max-w-[250px] font-semibold text-xl sm:text-2xl leading-[140%] tracking-normal text-custom-text-heading">
-                        Machines With Future Technology
-                    </h2>
+                    <HeadingText text={"Machines With Future Technology"} />
                     <p className="font-normal text-[15px] sm:text-base leading-[140%] text-custom-text-gray-light mb-4">
                         See the future with high-performance electric cars
                         produced by renowned brands. They feature futuristic

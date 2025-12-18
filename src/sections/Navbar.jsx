@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoCloseSharp } from "react-icons/io5";
 
-import logo from "../../public/logo.png";
+import logo from "../assets/images/logo.png";
 
 const menuLists = [
     {
