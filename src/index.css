@@ -52,20 +52,8 @@
     }
 }
 
-.swiper {
-    width: 80%;
-    height: 100%;
-}
-
-.swiper-slide {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.swiper-slide img {
-    display: block;
-    object-fit: cover;
+.popular-swiper .swiper-pagination {
+    position: static;
+    margin-top: 48px;
+    margin-inline: auto;
 }

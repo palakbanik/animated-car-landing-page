@@ -1,12 +1,13 @@
-import React from "react";
 import HeadingText from "../components/HeadingText";
 import { RiShoppingBag2Line } from "react-icons/ri";
 
+import { motion } from "motion/react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Pagination } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 import porscheCarOne from "../assets/images/porsche-one.png";
 import porscheCarTwo from "../assets/images/porsche-two.png";
@@ -17,6 +18,8 @@ import porscheCarFive from "../assets/images/porsche-five.png";
 import speedIcon from "../assets/icons/speed-icon.svg";
 import arrowIcon from "../assets/icons/arrow-icon.svg";
 import chargingPileIcon from "../assets/icons/charging-pile-icon.svg";
+
+import "../index.css";
 
 const cars = [
     {
@@ -70,33 +73,65 @@ const cars = [
         cartPrice: "$128,900",
     },
 ];
+
 export default function Popular() {
     return (
         <section
             id="popular"
-            className="w-full max-w-7xl mx-auto pt-[72px] pb-20 pl-6 overflow-hidden relative"
+            className="w-full max-w-7xl mx-auto pt-[72px] pb-20 pl-6 sm:px-20 overflow-hidden relative"
         >
-            <div className="w-full grid place-items-center text-center mb-14">
+            <motion.div
+                initial={{
+                    y: 100,
+                    opacity: 0,
+                }}
+                whileInView={{
+                    y: 0,
+                    opacity: 100,
+                    transition: { duration: 1.5 },
+                }}
+                viewport={{ once: false, amount: 0.3 }}
+                className="w-full grid place-items-center text-center mb-14"
+            >
                 <HeadingText
                     text={"Choose Your Electric Car Of The Porsche Brand"}
                 />
-            </div>
+            </motion.div>
 
             <Swiper
-                loop
+                className="popular-swiper"
+                modules={[Pagination]}
+                pagination={{ clickable: true, dynamicBullets: true }}
+                grabCursor
+                slidesPerView={"auto"}
                 spaceBetween={23}
-                autoplay={{
-                    delay: 2500,
+                breakpoints={{
+                    375: { slidesPerView: 1.5 },
+                    420: { slidesPerView: 1.7 },
+                    768: { slidesPerView: 2 },
+                    1020: { slidesPerView: 3 },
+                    1280: { slidesPerView: 4 },
                 }}
-                slidesPerView={1}
-                className="w-full"
+                loop
             >
-                {/* card 1 */}
-                {cars.map((car, idx) => (
-                    <SwiperSlide key={idx}>
-                        <div className="max-w-[228px] h-[303px] rounded-2xl bg-custom-bg-dark-color relative overflow-clip -z-10 shrink-0">
+                {cars.map((car) => (
+                    <SwiperSlide key={car.id}>
+                        <motion.div
+                            initial={{
+                                x: 100,
+                                opacity: 0,
+                            }}
+                            whileInView={{
+                                x: 0,
+                                opacity: 100,
+                                transition: { duration: 1.5, delay: 0.5 },
+                            }}
+                            viewport={{ once: false, amount: 0.3 }}
+                            className="w-full max-w-[228px] h-[303px] rounded-2xl bg-custom-bg-dark-color relative overflow-clip z-0 flex items-center justify-center"
+                        >
                             {/* blob */}
                             <div className="w-[190px] h-[190px] rounded-full bg-custom-blob/50 blur-2xl absolute -top-11 -left-11"></div>
+
                             <div className="bg-custom-btn-bg px-4 py-3 inline-block absolute bottom-0 right-0 rounded-tl-2xl">
                                 <RiShoppingBag2Line />
                             </div>
@@ -112,7 +147,11 @@ export default function Popular() {
                             </div>
 
                             <div className="absolute top-[100px] right-5">
-                                <img src={car.image} alt={car.carName} />
+                                <img
+                                    src={car.image}
+                                    alt={car.carName}
+                                    draggable="false"
+                                />
                             </div>
 
                             <div className="absolute bottom-[76px] left-6">
@@ -125,9 +164,10 @@ export default function Popular() {
                                                 draggable="false"
                                             />
                                             <p className="font-normal text-xs leading-[140%] tracking-normal">
-                                                3.7 Sec
+                                                {car.carMileage}
                                             </p>
                                         </div>
+
                                         <div className="flex items-center gap-1">
                                             <img
                                                 src={arrowIcon}
@@ -135,7 +175,7 @@ export default function Popular() {
                                                 draggable="false"
                                             />
                                             <p className="font-normal text-xs leading-[140%] tracking-normal">
-                                                356 Km/h
+                                                {car.carMiles}
                                             </p>
                                         </div>
                                     </div>
@@ -147,15 +187,16 @@ export default function Popular() {
                                             draggable="false"
                                         />
                                         <p className="font-normal text-xs leading-[140%] tracking-normal">
-                                            Electric
+                                            {car.cartType}
                                         </p>
                                     </div>
                                 </div>
                             </div>
+
                             <h3 className="absolute bottom-6 left-6 font-semibold text-base leading-[140%] tracking-normal">
-                                $176,900
+                                {car.cartPrice}
                             </h3>
-                        </div>
+                        </motion.div>
                     </SwiperSlide>
                 ))}
             </Swiper>
